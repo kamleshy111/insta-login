@@ -17,6 +17,7 @@ Before you begin, you'll need:
 1. A Facebook Developer account
 2. An Instagram app configured in Facebook Developer Console
 3. Node.js 18+ installed
+4. pnpm package manager installed (`npm install -g pnpm`)
 
 ## Instagram App Setup
 
@@ -82,12 +83,12 @@ Before you begin, you'll need:
 
 1. Install dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. Run the development server:
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser
@@ -140,9 +141,10 @@ This app is configured for development. For production:
 
 ## Tech Stack
 
-- **Frontend**: Next.js 14, React 18, TypeScript
+- **Frontend**: Next.js 15, React 19, TypeScript
 - **Styling**: Tailwind CSS
 - **Authentication**: NextAuth.js
+- **Package Manager**: pnpm
 - **API**: Instagram Basic Display API
 - **Deployment**: Vercel (recommended)
 
