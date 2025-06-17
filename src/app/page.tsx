@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import { instagramLogin } from "@/lib/instagram-login"
 
 interface InstagramPost {
   id: string
@@ -94,7 +95,7 @@ export default function Home() {
                 </p>
               </div>
               <button
-                onClick={() => signIn('instagram')}
+                onClick={() => instagramLogin()}
                 className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
               >
                 Sign in with Instagram

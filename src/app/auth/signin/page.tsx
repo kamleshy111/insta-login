@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { instagramLogin } from "@/lib/instagram-login"
 
 export default function SignIn() {
   const searchParams = useSearchParams()
@@ -54,20 +55,12 @@ export default function SignIn() {
     setError(null)
     
     try {
-      const result = await signIn('instagram', { 
-        callbackUrl,
-        redirect: false 
-      })
-      
-      if (result?.error) {
-        setError("Failed to sign in with Instagram. Please check your credentials.")
-      } else if (result?.url) {
-        router.push(result.url)
-      }
-         } catch (err) {
-       console.error("Sign in error:", err)
-       setError("An unexpected error occurred. Please try again.")
-     } finally {
+      // Use the custom Instagram login function
+      instagramLogin()
+    } catch (err) {
+      console.error("Sign in error:", err)
+      setError("An unexpected error occurred. Please try again.")
+    } finally {
       setIsLoading(false)
     }
   }
