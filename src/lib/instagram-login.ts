@@ -26,5 +26,6 @@ export function instagramLogin(account_id?: string) {
     `response_type=code&` +
     `state=${encodeURIComponent(JSON.stringify(stateData))}`;
 
-  window.open(authUrl, "_blank");
+  // Redirect in the same window instead of opening new tab
+  window.location.href = authUrl;
 } 

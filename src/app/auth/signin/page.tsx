@@ -3,7 +3,6 @@
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { instagramLogin } from "@/lib/instagram-login"
 import { useErrorContext } from "@/components/ErrorProvider"
 
 export default function SignIn() {
@@ -18,8 +17,11 @@ export default function SignIn() {
     clearError()
     
     try {
-      // Use the custom Instagram login function
-      instagramLogin()
+      // Use NextAuth's built-in signIn function
+      await signIn("instagram", { 
+        callbackUrl: "/",
+        redirect: true 
+      })
     } catch (err) {
       console.error("Sign in error:", err)
       setLocalError("An unexpected error occurred. Please try again.")
