@@ -23,7 +23,7 @@ const InstagramProvider = {
       image: profile.profile_picture_url,
     }
   },
-  clientId: process.env.INSTAGRAM_CLIENT_ID,
+  clientId: process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID,
   clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
 }
 

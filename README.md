@@ -67,11 +67,9 @@ Before you begin, you'll need:
    NEXTAUTH_URL=http://localhost:3000
    NEXTAUTH_SECRET=your-secret-key-here
    
-   INSTAGRAM_CLIENT_ID=your-instagram-client-id
+   NEXT_PUBLIC_INSTAGRAM_CLIENT_ID=your-instagram-client-id
    INSTAGRAM_CLIENT_SECRET=your-instagram-client-secret
    
-   INSTAGRAM_APP_ID=your-instagram-app-id
-   INSTAGRAM_APP_SECRET=your-instagram-app-secret
    ```
 
 3. Generate a secure secret for `NEXTAUTH_SECRET`:
