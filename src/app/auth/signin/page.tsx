@@ -1,69 +1,35 @@
 'use client'
 
 import { signIn } from "next-auth/react"
-import { useSearchParams, useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { instagramLogin } from "@/lib/instagram-login"
+import { useErrorContext } from "@/components/ErrorProvider"
 
 export default function SignIn() {
-  const searchParams = useSearchParams()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  
-  const callbackUrl = searchParams.get("callbackUrl") || "/"
-  const errorParam = searchParams.get("error")
-
-  useEffect(() => {
-    if (errorParam) {
-      switch (errorParam) {
-        case "OAuthSignin":
-          setError("Error occurred during Instagram sign in. Please check your environment variables.")
-          break
-        case "OAuthCallback":
-          setError("Error in OAuth callback. Please try again.")
-          break
-        case "OAuthCreateAccount":
-          setError("Could not create account. Please try again.")
-          break
-        case "EmailCreateAccount":
-          setError("Could not create account. Please try again.")
-          break
-        case "Callback":
-          setError("Error in callback. Please try again.")
-          break
-        case "OAuthAccountNotLinked":
-          setError("Account not linked. Please try a different sign in method.")
-          break
-        case "EmailSignin":
-          setError("Error sending email. Please try again.")
-          break
-        case "CredentialsSignin":
-          setError("Sign in failed. Please check your credentials.")
-          break
-        case "SessionRequired":
-          setError("Please sign in to access this page.")
-          break
-        default:
-          setError("An error occurred during sign in.")
-      }
-    }
-  }, [errorParam])
+  const [localError, setLocalError] = useState<string | null>(null)
+  const { hasError, errorMessage, clearError } = useErrorContext()
 
   const handleInstagramSignIn = async () => {
     setIsLoading(true)
-    setError(null)
+    setLocalError(null)
+    clearError()
     
     try {
       // Use the custom Instagram login function
       instagramLogin()
     } catch (err) {
       console.error("Sign in error:", err)
-      setError("An unexpected error occurred. Please try again.")
+      setLocalError("An unexpected error occurred. Please try again.")
     } finally {
       setIsLoading(false)
     }
   }
+
+  // Use error from context if available, otherwise use local error
+  const displayError = hasError ? errorMessage : localError
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
@@ -83,9 +49,9 @@ export default function SignIn() {
             </p>
           </div>
 
-          {error && (
+          {displayError && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-600 text-sm">{error}</p>
+              <p className="text-red-600 text-sm">{displayError}</p>
             </div>
           )}
 
