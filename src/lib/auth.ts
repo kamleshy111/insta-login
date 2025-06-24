@@ -6,8 +6,9 @@ const InstagramProvider = {
   name: "Instagram",
   type: "oauth" as const,
   version: "2.0",
-  scope: "user_profile,user_media",
-  params: { grant_type: "authorization_code" },
+  scope: "instagram_business_basic,instagram_business_manage_messages,instagram_business_manage_comments" +
+      ",instagram_business_content_publish,instagram_business_manage_insights",
+  params: { grant_type: "code" },
   accessTokenUrl: "https://api.instagram.com/oauth/access_token",
   authorizationUrl: "https://api.instagram.com/oauth/authorize",
   profileUrl: "https://graph.instagram.com/me",

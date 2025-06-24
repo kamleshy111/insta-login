@@ -1,7 +1,8 @@
 export function instagramLogin(account_id?: string) {
   const clientId = process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID;
   console.log(clientId);
-  const redirectUri = `${process.env.NEXT_PUBLIC_URL}/api/auth/callback/instagram`;
+ // const redirectUri = `${process.env.NEXT_PUBLIC_URL}/api/auth/callback/instagram`;
+  const redirectUri = `https://krtechweb.com/instagram-login/callback.php`;
 
   // Instagram Basic Display API scopes
   const scopes = [
@@ -19,12 +20,12 @@ export function instagramLogin(account_id?: string) {
   };
 
   const authUrl =
-    `https://api.instagram.com/oauth/authorize?` +
+    `https://www.instagram.com/oauth/authorize?` +
+    `force_reauth=true&` +
     `client_id=${clientId}&` +
     `redirect_uri=${encodeURIComponent(redirectUri)}&` +
-    `scope=${encodeURIComponent(scopes.join(","))}&` +
-    `response_type=code&` +
-    `state=${encodeURIComponent(JSON.stringify(stateData))}`;
+      `scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights&` +
+      `response_type=code&`;
 
   // Redirect in the same window instead of opening new tab
   window.location.href = authUrl;

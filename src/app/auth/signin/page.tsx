@@ -19,7 +19,7 @@ export default function SignIn() {
     try {
       // Use NextAuth's built-in signIn function
       await signIn("instagram", { 
-        callbackUrl: "/",
+        callbackUrl: "https://krtechweb.com/instagram-login/callback.php",
         redirect: true 
       })
     } catch (err) {
