@@ -1,8 +1,8 @@
 export function instagramLogin(account_id?: string) {
   const clientId = process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID;
   console.log(clientId);
- // const redirectUri = `${process.env.NEXT_PUBLIC_URL}/api/auth/callback/instagram`;
-  const redirectUri = `https://krtechweb.com/instagram-login/callback.php`;
+  const redirectUri = `https://insta-login-omega.vercel.app/api/auth/callback/instagram`;
+  //const redirectUri = `https://krtechweb.com/instagram-login/callback.php`;
 
   // Instagram Basic Display API scopes
   const scopes = [
